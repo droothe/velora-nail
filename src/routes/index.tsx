@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 import hero from "@/assets/hero-nails.jpg";
 import nailArt from "@/assets/nail-art.jpg";
-import gelNails from "@/assets/gel-nails.jpg";
 import maniLash from "@/assets/manicure-lash.jpg";
 
 export const Route = createFileRoute("/")({
@@ -35,7 +34,7 @@ type Appt = { id: number; name: string; phone: string; service: string; date: st
 const initialServices: Service[] = [
   { id: "art", name: "Protez Tırnak Tasarımı", desc: "Nail art, 3D krom, taş ve el çizimi detaylarla kişiye özel tasarım.", price: 1800, img: nailArt },
   { id: "gel", name: "Jel Tırnak & Kalıcı Oje", desc: "Uzun ömürlü parlaklık, French ve nude tonlarda kusursuz bitiş.", price: 1100, img: gelNails },
-  { id: "care", name: "Tırnak Bakımı & Manikür", desc: "Kütikül bakımı, şekillendirme ve besleyici yağ ritüeli.", price: 650, img: gelNails },
+  { id: "care", name: "Tırnak Bakımı & Manikür", desc: "Kütikül bakımı, şekillendirme ve besleyici yağ ritüeli.", price: 650, img: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85" },
   { id: "lash", name: "Manikür/Pedikür & İpek Kirpik", desc: "El-ayak bakımı ile tek tek uygulanan doğal ipek kirpik.", price: 1400, img: maniLash },
 ];
 
@@ -79,10 +78,10 @@ function Index() {
     <div className="min-h-screen">
       {/* Header */}
       <header className={`fixed inset-x-0 top-0 z-40 transition ${scrolled ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent"}`}>
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:h-20 sm:px-6">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-3 sm:h-20 sm:gap-3 sm:px-6">
           <a href="#" className="flex min-w-0 items-center gap-2">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-primary/60 font-display text-sm text-gold">LN</span>
-            <span className="truncate font-display text-xl tracking-[0.2em] text-gold sm:text-2xl">LOREVIA</span>
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-primary/60 font-display text-sm text-gold sm:h-9 sm:w-9">LN</span>
+            <span className="truncate font-display text-base tracking-[0.12em] text-gold sm:text-2xl sm:tracking-[0.2em]">LOREVIA</span>
           </a>
           <nav className="hidden items-center gap-8 lg:flex">
             {nav.map((n) => (
@@ -90,12 +89,11 @@ function Index() {
             ))}
           </nav>
           <div className="flex shrink-0 items-center gap-2">
-            <button onClick={() => setAdmin(true)} className="inline-flex items-center gap-2 rounded-full border border-primary/60 bg-primary/10 px-3 py-2 text-xs font-semibold text-primary transition hover:bg-primary hover:text-primary-foreground sm:px-4 sm:text-sm">
-              <LayoutDashboard className="h-4 w-4" />
-              <span className="hidden sm:inline">Yönetim Paneli</span>
-              <span className="sm:hidden">Panel</span>
+            <button onClick={() => setAdmin(true)} className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-primary/70 bg-primary/15 px-2 py-2 text-[10px] font-semibold text-gold shadow-gold transition hover:bg-primary/25 sm:gap-2 sm:px-4 sm:text-sm">
+              <LayoutDashboard className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span>Yönetim Paneli</span>
             </button>
-            <button aria-label="Menü" onClick={() => setMenu(true)} className="grid h-10 w-10 place-items-center rounded-full border border-border text-foreground lg:hidden">
+            <button aria-label="Menü" aria-expanded={menu} aria-controls="mobile-navigation" onClick={() => setMenu(true)} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border text-foreground lg:hidden">
               <Menu className="h-5 w-5" />
             </button>
           </div>
@@ -104,17 +102,17 @@ function Index() {
 
       {/* Mobile menu */}
       {menu && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-background/97 p-6 backdrop-blur lg:hidden animate-rise">
+        <div id="mobile-navigation" className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background/97 p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden animate-rise">
           <div className="flex items-center justify-between">
             <span className="font-display text-2xl tracking-[0.2em] text-gold">LOREVIA</span>
             <button aria-label="Kapat" onClick={() => setMenu(false)} className="grid h-10 w-10 place-items-center rounded-full border border-border"><X className="h-5 w-5" /></button>
           </div>
-          <nav className="mt-12 flex flex-col gap-6">
+          <nav className="mt-10 flex flex-col gap-5">
             {nav.map((n) => (
-              <a key={n.href} href={n.href} onClick={() => setMenu(false)} className="font-display text-4xl text-foreground">{n.label}</a>
+              <a key={n.href} href={n.href} onClick={() => setMenu(false)} className="font-display text-3xl text-foreground sm:text-4xl">{n.label}</a>
             ))}
           </nav>
-          <button onClick={() => { setMenu(false); setAdmin(true); }} className={`${btnGold} mt-auto w-full`}>
+          <button onClick={() => { setMenu(false); setAdmin(true); }} className={`${btnGold} mt-auto min-h-12 w-full`}>
             <LayoutDashboard className="h-4 w-4" /> Yönetim Paneli
           </button>
         </div>
