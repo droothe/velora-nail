@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import hero from "@/assets/hero-nails.jpg";
 import nailArt from "@/assets/nail-art.jpg";
+import gelNails from "@/assets/gel-nails.jpg";
 import maniLash from "@/assets/manicure-lash.jpg";
 
 export const Route = createFileRoute("/")({
