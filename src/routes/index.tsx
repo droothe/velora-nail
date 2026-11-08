@@ -235,7 +235,7 @@ function InfoRow({ icon, label, value, href }: { icon: React.ReactNode; label: s
 }
 
 function Booking({ services, onCreate }: { services: Service[]; onCreate: (a: Omit<Appt, "id" | "status">) => void }) {
-  const empty = { name: "", phone: "", service: services[0].name, date: "", time: "" };
+  const empty = { name: "", phone: "", service: services[0]?.name ?? "", date: "", time: "" };
   const [f, setF] = useState(empty);
   const today = new Date().toISOString().slice(0, 10);
 
