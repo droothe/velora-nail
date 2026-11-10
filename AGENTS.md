@@ -28,10 +28,3 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
-
-## Shared visible task status
-
-- When a task reaches a clear outcome, use the VS Code integrated browser when available to show a full-viewport status: green for success, red for an error, and blue when waiting for the user's answer.
-- Keep the status visible until the user responds; do not dismiss it with a timer. If an error is fixed, replace red with green.
-- For questions, also use the normal chat question flow. If no integrated browser is available, report the status in chat and do not claim a screen was shown.
-- Do not claim access to the user's external browser or imply background monitoring. See `../otomasyon.md`.
