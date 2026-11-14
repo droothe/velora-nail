@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import {
-  Menu, X, LayoutDashboard, MapPin, Phone, MessageCircle, Navigation, Sparkles,
+  Menu, X, LayoutDashboard, MapPin, Phone, MessageCircle, Navigation, Sparkles, Mail,
   Clock, Check, CalendarDays, Instagram,
 } from "lucide-react";
 import hero from "@/assets/hero-nails.jpg";
@@ -14,19 +14,20 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Lorevia Nail — Protez Tırnak & Nail Art | Çankaya Ankara" },
-      { name: "description", content: "Ankara Çankaya'da sanatsal protez tırnak, nail art, jel tırnak ve manikür. Online randevu alın." },
-      { property: "og:title", content: "Lorevia Nail — Protez Tırnak & Nail Art Ankara" },
-      { property: "og:description", content: "Çankaya'da lüks protez tırnak ve nail art stüdyosu. Erken randevu önerilir." },
+      { title: "Velora Nail & Beauty — Güzellik & Tırnak Stüdyosu" },
+      { name: "description", content: "Nişantaşı, İstanbul'da kurgusal güzellik ve tırnak stüdyosu. Tırnak bakımı ve nail art için online randevu demosu." },
+      { property: "og:title", content: "Velora Nail & Beauty — Güzellik & Tırnak Stüdyosu" },
+      { property: "og:description", content: "Nişantaşı, İstanbul'da kurgusal güzellik ve tırnak stüdyosu demosu." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
 
-const PHONE = "0551 856 88 40";
-const WA = "https://wa.me/905518568840";
-const MAPS = "https://www.google.com/maps/dir/?api=1&destination=Me%C5%9Frutiyet+Caddesi+Karanfil+Sokak+24%2F5+%C3%87ankaya+Ankara";
+const PHONE = "+90 555 000 00 00";
+const EMAIL = "randevu@veloranail.example";
+const WA = "https://wa.me/905550000000";
+const MAPS = "https://www.google.com/maps/dir/?api=1&destination=Nişantaşı%2C+İstanbul";
 
 type Service = { id: string; name: string; desc: string; price: number; img: string };
 type Status = "Bekliyor" | "Onaylandı";
@@ -40,9 +41,9 @@ const initialServices: Service[] = [
 ];
 
 const initialAppts: Appt[] = [
-  { id: 1, name: "Elif Yıldız", phone: "0532 111 22 33", service: "Protez Tırnak Tasarımı", date: "2026-11-10", time: "14:00", status: "Onaylandı" },
-  { id: 2, name: "Zeynep Kaya", phone: "0544 222 33 44", service: "Jel Tırnak & Kalıcı Oje", date: "2026-11-11", time: "11:30", status: "Bekliyor" },
-  { id: 3, name: "Melis Arslan", phone: "0555 333 44 55", service: "Manikür/Pedikür & İpek Kirpik", date: "2026-11-12", time: "16:00", status: "Bekliyor" },
+  { id: 1, name: "Demo Kullanıcı 1", phone: "0555 000 00 01", service: "Protez Tırnak Tasarımı", date: "2026-11-18", time: "14:00", status: "Onaylandı" },
+  { id: 2, name: "Demo Kullanıcı 2", phone: "0555 000 00 02", service: "Jel Tırnak & Kalıcı Oje", date: "2026-11-19", time: "11:30", status: "Bekliyor" },
+  { id: 3, name: "Demo Kullanıcı 3", phone: "0555 000 00 03", service: "Manikür/Pedikür & İpek Kirpik", date: "2026-11-20", time: "16:00", status: "Bekliyor" },
 ];
 
 const tl = (n: number) => `₺${n.toLocaleString("tr-TR")}`;
@@ -81,8 +82,8 @@ function Index() {
       <header className={`fixed inset-x-0 top-0 z-40 transition ${scrolled ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent"}`}>
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-3 sm:h-20 sm:gap-3 sm:px-6">
           <a href="#" className="flex min-w-0 items-center gap-2">
-            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-primary/60 font-display text-sm text-gold sm:h-9 sm:w-9">LN</span>
-            <span className="truncate font-display text-base tracking-[0.12em] text-gold sm:text-2xl sm:tracking-[0.2em]">LOREVIA</span>
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-primary/60 font-display text-sm text-gold sm:h-9 sm:w-9">VN</span>
+            <span className="truncate font-display text-base tracking-[0.12em] text-gold sm:text-2xl sm:tracking-[0.2em]">VELORA</span>
           </a>
           <nav className="hidden items-center gap-8 lg:flex">
             {nav.map((n) => (
@@ -105,7 +106,7 @@ function Index() {
       {menu && (
         <div id="mobile-navigation" className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background/97 p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden animate-rise">
           <div className="flex items-center justify-between">
-            <span className="font-display text-2xl tracking-[0.2em] text-gold">LOREVIA</span>
+            <span className="font-display text-2xl tracking-[0.2em] text-gold">VELORA</span>
             <button aria-label="Kapat" onClick={() => setMenu(false)} className="grid h-10 w-10 place-items-center rounded-full border border-border"><X className="h-5 w-5" /></button>
           </div>
           <nav className="mt-10 flex flex-col gap-5">
@@ -129,10 +130,10 @@ function Index() {
               <Sparkles className="h-3.5 w-3.5" /> Erken Randevu Önerilir
             </span>
             <h1 className="mt-6 font-display text-4xl leading-[1.05] text-foreground sm:text-6xl lg:text-7xl">
-              Ankara Çankaya'da <em className="text-gold">Sanatsal</em> Protez Tırnak & Nail Art Deneyimi
+              Nişantaşı'nda <em className="text-gold">Özgün</em> Tırnak & Güzellik Deneyimi
             </h1>
             <p className="mt-5 max-w-lg text-base text-muted-foreground sm:text-lg">
-              Kişiye özel tasarımlar, kusursuz işçilik ve lüks bir atmosfer. By Kübra Merzi.
+              Kişiye özel tasarımlar, özenli uygulamalar ve huzurlu bir atmosfer. Uzmanımız Mina Yalın ile.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a href="#randevu" className={btnGold}><CalendarDays className="h-4 w-4" /> Online Randevu Al</a>
@@ -171,12 +172,12 @@ function Index() {
           <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
             {[hero, nailArt, gelNails, maniLash].map((src, i) => (
               <div key={i} className={`overflow-hidden rounded-lg ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
-                <img src={src} alt="Lorevia Nail tasarımı" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105" />
+                <img src={src} alt="Velora Nail & Beauty tasarımı" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105" />
               </div>
             ))}
           </div>
           <div className="mt-8 text-center">
-            <a href="https://instagram.com/lorevianail" target="_blank" rel="noreferrer" className={btnGhost}><Instagram className="h-4 w-4" /> @lorevianail</a>
+            <a href="https://instagram.example/veloranail" target="_blank" rel="noreferrer" className={btnGhost}><Instagram className="h-4 w-4" /> @veloranail.demo</a>
           </div>
         </div>
       </section>
@@ -188,8 +189,9 @@ function Index() {
         <SectionTitle kicker="İletişim" title="Stüdyomuza Bekleriz" />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           <div className="rounded-lg border border-border bg-card p-6 sm:p-8">
-            <InfoRow icon={<MapPin className="h-5 w-5" />} label="Adres" value="Meşrutiyet Caddesi Karanfil Sokak 24/5, Çankaya / Ankara" />
-            <InfoRow icon={<Phone className="h-5 w-5" />} label="Telefon" value={PHONE} href="tel:+905518568840" />
+            <InfoRow icon={<MapPin className="h-5 w-5" />} label="Adres" value="Nişantaşı / İstanbul (demo konum)" />
+            <InfoRow icon={<Phone className="h-5 w-5" />} label="Telefon" value={PHONE} href="tel:+905550000000" />
+            <InfoRow icon={<Mail className="h-5 w-5" />} label="E-posta" value={EMAIL} href={`mailto:${EMAIL}`} />
             <InfoRow icon={<Clock className="h-5 w-5" />} label="Randevu" value="Erken randevu önerilir" />
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href={WA} target="_blank" rel="noreferrer" className={btnGold}><MessageCircle className="h-4 w-4" /> WhatsApp'tan Yaz</a>
@@ -197,13 +199,13 @@ function Index() {
             </div>
           </div>
           <div className="min-h-[300px] overflow-hidden rounded-lg border border-border">
-            <iframe title="Lorevia Nail konum" className="h-full min-h-[300px] w-full grayscale invert-[.9]" loading="lazy" src="https://www.google.com/maps?q=Me%C5%9Frutiyet+Caddesi+Karanfil+Sokak+24+%C3%87ankaya+Ankara&output=embed" />
+            <iframe title="Velora Nail & Beauty demo konumu" className="h-full min-h-[300px] w-full grayscale invert-[.9]" loading="lazy" src="https://www.google.com/maps?q=Nişantaşı%2C+İstanbul&output=embed" />
           </div>
         </div>
       </section>
 
       <footer className="border-t border-border py-8 text-center text-xs tracking-widest text-muted-foreground">
-        © 2026 LOREVIA NAIL · BY KÜBRA MERZİ · ÇANKAYA / ANKARA
+        © 2026 VELORA NAIL & BEAUTY · UZMAN MINA YALIN · NİŞANTAŞI / İSTANBUL
       </footer>
 
       {admin && <AdminPanel appts={appts} setAppts={setAppts} services={services} setServices={setServices} onClose={() => setAdmin(false)} />}
@@ -295,7 +297,7 @@ function AdminPanel({ appts, setAppts, services, setServices, onClose }: {
       <div onClick={(e) => e.stopPropagation()} className="flex max-h-[92svh] w-full max-w-4xl flex-col overflow-hidden rounded-t-2xl border border-border bg-popover shadow-gold animate-rise sm:rounded-2xl">
         <div className="flex items-center justify-between gap-3 border-b border-border p-4 sm:p-6">
           <div className="min-w-0">
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">Lorevia Nail</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">Velora Nail & Beauty</p>
             <h2 className="truncate font-display text-2xl text-foreground sm:text-3xl">Yönetim Paneli</h2>
           </div>
           <button aria-label="Kapat" onClick={onClose} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border hover:border-primary"><X className="h-5 w-5" /></button>
